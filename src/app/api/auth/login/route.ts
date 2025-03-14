@@ -1,6 +1,5 @@
+import { findUserByCredentials, generateToken } from "@/src/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
-import { findUserByCredentials, generateToken } from "@/lib/auth"
-
 export async function POST(request: NextRequest) {
   try {
     // Parse request body

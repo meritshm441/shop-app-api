@@ -1,5 +1,5 @@
+import { requireAuth } from "@/src/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
-import { requireAuth } from "@/lib/auth"
 
 export async function GET(request: NextRequest) {
   const { isAuthenticated, user } = await requireAuth(request)

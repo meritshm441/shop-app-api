@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server"
 import * as jwt from "jsonwebtoken"
 import { connectToDatabase } from "./mongodb"
-import User from "@/models/User"
+import User from "../models/User"
 
 // Secret key for JWT signing (in a real application, use an environment variable)
 const JWT_SECRET = "your-jwt-secret-key"
