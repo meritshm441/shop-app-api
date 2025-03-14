@@ -1,103 +1,225 @@
-import Image from "next/image";
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen p-8 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Shopping List API</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="mb-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
+        <h2 className="text-xl font-semibold mb-4 text-blue-800">Interactive API Testing</h2>
+        <p className="mb-4">Try out the API endpoints directly in your browser with our Swagger-like interface.</p>
+        <Link
+          href="/api-docs"
+          className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        >
+          Open API Testing Interface
+        </Link>
+      </div>
+
+      <div className="mb-8 bg-green-50 p-6 rounded-lg border border-green-200">
+        <h2 className="text-xl font-semibold mb-4 text-green-800">MongoDB Integration</h2>
+        <p className="mb-4">
+          This API uses MongoDB for persistent data storage. Before using the API, you need to seed the database:
+        </p>
+        <div className="bg-white p-4 rounded-md mb-4 font-mono text-sm">POST /api/seed</div>
+        <p className="text-sm text-green-700">
+          This will populate the database with sample products, cart items, and users. You only need to do this once.
+        </p>
+      </div>
+
+      <div className="mb-8 bg-purple-50 p-6 rounded-lg border border-purple-200">
+        <h2 className="text-xl font-semibold mb-4 text-purple-800">JWT Authentication</h2>
+        <p className="mb-4">
+          This API uses JWT (JSON Web Tokens) for authentication. To get a token, use the login endpoint:
+        </p>
+        <div className="bg-white p-4 rounded-md mb-4 font-mono text-sm">
+          POST /api/auth/login
+          <pre className="mt-2 text-xs">
+            {`{
+  "email": "admin@example.com",
+  "password": "admin123"
+}`}
+          </pre>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        <p className="text-sm text-purple-700">
+          Use the token in the Authorization header for protected endpoints:{" "}
+          <code>Authorization: Bearer your_token</code>
+        </p>
+      </div>
+
+      <div className="mb-8 bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+        <h2 className="text-xl font-semibold mb-4 text-yellow-800">User Management</h2>
+        <p className="mb-4">You can register new users and manage existing ones with the user endpoints:</p>
+        <div className="bg-white p-4 rounded-md mb-4 font-mono text-sm">
+          POST /api/users
+          <pre className="mt-2 text-xs">
+            {`{
+  "email": "newuser@example.com",
+  "password": "password123",
+  "name": "New User",
+  "role": "user"
+}`}
+          </pre>
+        </div>
+        <p className="text-sm text-yellow-700">
+          Admin users can manage all users, while regular users can only manage their own accounts.
+        </p>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">API Documentation</h2>
+        <p className="mb-4">This API provides endpoints for managing products, a shopping cart, and users.</p>
+
+        <div className="bg-gray-100 p-6 rounded-lg">
+          <h3 className="text-xl font-medium mb-3">Authentication Endpoints</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <code>POST /api/auth/login</code> - Login and get JWT token
+            </li>
+            <li>
+              <code>GET /api/auth/me</code> - Get current user information
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">User Endpoints</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <code>GET /api/users</code> - Get all users (admin only)
+            </li>
+            <li>
+              <code>POST /api/users</code> - Register a new user
+            </li>
+            <li>
+              <code>GET /api/users/:id</code> - Get a specific user
+            </li>
+            <li>
+              <code>PUT /api/users/:id</code> - Update a user
+            </li>
+            <li>
+              <code>DELETE /api/users/:id</code> - Delete a user (admin only)
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Products Endpoints</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <code>GET /api/products</code> - Retrieve all products
+            </li>
+            <li>
+              <code>GET /api/products/:id</code> - Retrieve a specific product
+            </li>
+            <li>
+              <code>POST /api/products</code> - Add a new product (admin only)
+            </li>
+            <li>
+              <code>PUT /api/products/:id</code> - Update a product (admin only)
+            </li>
+            <li>
+              <code>DELETE /api/products/:id</code> - Delete a product (admin only)
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Cart Endpoints</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <code>GET /api/cart</code> - Retrieve the current cart
+            </li>
+            <li>
+              <code>POST /api/cart</code> - Add a product to the cart
+            </li>
+            <li>
+              <code>PUT /api/cart/:id</code> - Update the quantity of a cart item
+            </li>
+            <li>
+              <code>DELETE /api/cart/:id</code> - Remove an item from the cart
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Utility Endpoints</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <code>GET /api/seed</code> - Get current data state
+            </li>
+            <li>
+              <code>POST /api/seed</code> - Seed the database with initial data
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Authentication</h3>
+          <p>Admin endpoints require JWT authentication. Include the token in the Authorization header:</p>
+          <pre className="bg-gray-200 p-3 rounded mt-2">Authorization: Bearer your_jwt_token</pre>
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Example Usage</h2>
+
+        <div className="bg-gray-100 p-6 rounded-lg">
+          <h3 className="text-xl font-medium mb-3">Register a New User</h3>
+          <pre className="bg-gray-200 p-3 rounded">
+            {`fetch('/api/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    email: 'newuser@example.com',
+    password: 'password123',
+    name: 'New User',
+    role: 'user'
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data));`}
+          </pre>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Login and Get Token</h3>
+          <pre className="bg-gray-200 p-3 rounded">
+            {`fetch('/api/auth/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    email: 'admin@example.com',
+    password: 'admin123'
+  })
+})
+  .then(response => response.json())
+  .then(data => {
+    // Store the token for later use
+    const token = data.token;
+    console.log('JWT Token:', token);
+  });`}
+          </pre>
+
+          <h3 className="text-xl font-medium mt-6 mb-3">Add Product (with Authentication)</h3>
+          <pre className="bg-gray-200 p-3 rounded">
+            {`fetch('/api/products', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your_jwt_token'
+  },
+  body: JSON.stringify({
+    name: 'New Product',
+    category: 'Dessert',
+    price: 12.99,
+    description: 'A delicious new product',
+    image: {
+      thumbnail: '/placeholder.svg?height=100&width=100',
+      mobile: '/placeholder.svg?height=300&width=400',
+      tablet: '/placeholder.svg?height=400&width=600',
+      desktop: '/placeholder.svg?height=600&width=800'
+    }
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data));`}
+          </pre>
+        </div>
+      </div>
+    </main>
+  )
 }
+
